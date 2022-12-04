@@ -16,6 +16,8 @@ What am I missing here?
 
 ## How to re-produce?
 
+Try commenting out the `time.Sleep(ms(1))` in `shared.go` and executing the following script:
+
 `go test -bench=. -benchtime=3s`
 
 ## Some other findings
