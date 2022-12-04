@@ -2,6 +2,14 @@ package main
 
 import "sync"
 
+func compute(nums *[]int) {
+	values := *nums
+
+	for i, num := range values {
+		values[i] = step(num)
+	}
+}
+
 type result struct {
 	index  int
 	result int
