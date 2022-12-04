@@ -1,6 +1,6 @@
 package main
 
-func compute(nums *[]int8) {
+func compute(nums *[]int) {
 	values := *nums
 
 	for i, num := range values {

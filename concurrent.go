@@ -1,16 +1,18 @@
 package main
 
+import "sync"
+
 type result struct {
 	index  int
-	result int8
+	result int
 }
 
-func computeConcurrent(nums *[]int8) {
+func computeConcurrent(nums *[]int) {
 	values := *nums
 	resultChannel := make(chan result)
 
 	for i, num := range values {
-		go func(index int, n int8) {
+		go func(index int, n int) {
 			resultChannel <- result{index, step(n)}
 		}(i, num)
 	}
@@ -19,4 +21,19 @@ func computeConcurrent(nums *[]int8) {
 		r := <-resultChannel
 		values[r.index] = r.result
 	}
+}
+
+func computeConcurrent2(nums *[]int) {
+	var wg sync.WaitGroup
+	values := *nums
+
+	for i, num := range values {
+		wg.Add(1)
+		go func(index int, n int, v []int) {
+			defer wg.Done()
+			v[index] = step(n)
+		}(i, num, values)
+	}
+
+	wg.Wait()
 }
