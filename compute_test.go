@@ -14,11 +14,28 @@ func TestCompute(t *testing.T) {
 	assert.Equal(t, []int8{1, 2, 3, 4}, nums)
 }
 
+func TestComputeConcurrent(t *testing.T) {
+	nums := []int8{0, 1, 2, 3}
+
+	computeConcurrent(&nums)
+
+	assert.Equal(t, []int8{1, 2, 3, 4}, nums)
+}
+
 func BenchmarkCompute(b *testing.B) {
 	nums := createArrayWithZeros(100)
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
 		compute(&nums)
+	}
+}
+
+func BenchmarkComputeConcurrent(b *testing.B) {
+	nums := createArrayWithZeros(100)
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		computeConcurrent(&nums)
 	}
 }

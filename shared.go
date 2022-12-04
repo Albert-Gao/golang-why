@@ -7,7 +7,7 @@ func ms(ms int) time.Duration {
 }
 
 func step(val int8) int8 {
-	time.Sleep(ms(10))
+	// time.Sleep(ms(1))
 	return val + 1
 }
 
