@@ -13,3 +13,7 @@ With a `time.Sleep()`, the concurrent version is way faster than the non-current
 Without the `time.Sleep()`, the concurrent version is way slower than the non-current version.
 
 What am I missing here?
+
+## How to re-produce?
+
+`go test -bench=. -benchtime=3s`
